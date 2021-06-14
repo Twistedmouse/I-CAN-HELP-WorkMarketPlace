@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS icanhelp_db;
+CREATE DATABASE icanhelp_db;
