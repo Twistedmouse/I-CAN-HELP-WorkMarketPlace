@@ -1,3 +1,4 @@
+
 // const loginFormHandler = async (event) => {
 //     event.preventDefault();
 
@@ -20,12 +21,14 @@
 //   };
 
 const signupFormHandler = async (event) => {
+
     event.preventDefault();
 
     const firstname = document.querySelector('#firstname').value.trim();
     const lastname = document.querySelector('#lastname').value.trim();
     const email = document.querySelector('#email').value.trim();
     const password = document.querySelector('#password').value.trim();
+    console.log(firstname, lastname, email, password);
 
     if (firstname && lastname && email && password) {
         const response = await fetch('/api/users', {
@@ -38,21 +41,32 @@ const signupFormHandler = async (event) => {
             console.log("User SignUp complete.");
             // document.location.replace('/');
         } else {
+            console.log(response.status);
             alert('Failed to sign up.');
         }
     }
 };
 
+const signupBtnClick = async (event) => {
+
+    event.preventDefault();
+    window.location.assign('../html/signUp.html');
+
+};
 //   document
 //     .querySelector('.login-form')
 //     .addEventListener('submit', loginFormHandler);
 
-document
-    .querySelector('.signup-form')
-    .addEventListener('submit', signupFormHandler);
+if (document.querySelector('.signup-form') != null) {
+    document
+        .querySelector('.signup-form')
+        .addEventListener('click', signupFormHandler);
+};
 
-
-
+if (document.querySelector('.sign-up-btn') != null) {
+    document.querySelector('.sign-up-btn')
+        .addEventListener('click', signupBtnClick);
+};
 // TODO: login page
 // WHEN: input email and Password
 // IF: does not exist in db prompt to use the sign up button or
