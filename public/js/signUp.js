@@ -53,7 +53,7 @@ const signupBtnClick = async (event) => {
 //     .querySelector('.login-form')
 //     .addEventListener('submit', loginFormHandler);
 
-const alreadySignedInTakeBackToLogin = async (event) => {
+const alreadyRegisteredTakeBackToLogin = async (event) => {
   event.preventDefault();
   console.log("click click");
   window.location.assign("../html/login.html");
@@ -71,10 +71,10 @@ if (document.querySelector(".sign-up-btn") != null) {
     .addEventListener("click", signupBtnClick);
 }
 
-if (document.querySelector(".alreadySignedIn") != null) {
+if (document.querySelector(".alreadyRegistered") != null) {
   document
-    .querySelector(".alreadySignedIn")
-    .addEventListener("click", alreadySignedInTakeBackToLogin);
+    .querySelector(".alreadyRegistered")
+    .addEventListener("click", alreadyRegisteredTakeBackToLogin);
 }
 // TODO: login page
 // WHEN: input email and Password
