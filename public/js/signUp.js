@@ -1,23 +1,23 @@
 // const loginFormHandler = async (event) => {
-//     event.preventDefault();
+//   event.preventDefault();
 
-//     const email = document.querySelector('#email-login').value.trim();
-//     const password = document.querySelector('#password-login').value.trim();
+//   const email = document.querySelector("#email").value.trim();
+//   const password = document.querySelector("#password").value.trim();
 
-//     if (email && password) {
-//       const response = await fetch('/api/users/login', {
-//         method: 'POST',
-//         body: JSON.stringify({ email, password }),
-//         headers: { 'Content-Type': 'application/json' },
-//       });
+//   if (email && password) {
+//     const response = await fetch("/api/users/login", {
+//       method: "POST",
+//       body: JSON.stringify({ email, password }),
+//       headers: { "Content-Type": "application/json" },
+//     });
 
-//       if (response.ok) {
-//         document.location.replace('/');
-//       } else {
-//         alert('Failed to log in.');
-//       }
+//     if (response.ok) {
+//       document.location.replace("/");
+//     } else {
+//       alert("Failed to log in.");
 //     }
-//   };
+//   }
+// };
 
 const signupFormHandler = async (event) => {
   event.preventDefault();
@@ -37,7 +37,7 @@ const signupFormHandler = async (event) => {
 
     if (response.ok) {
       console.log("User SignUp complete.");
-      // document.location.replace('/');
+      document.location.replace("/");
     } else {
       console.log(response.status);
       alert("Failed to sign up.");
@@ -49,9 +49,12 @@ const signupBtnClick = async (event) => {
   event.preventDefault();
   window.location.assign("../html/signUp.html");
 };
+
+// if (document.querySelector(".login-in-btn") != null) {
 //   document
-//     .querySelector('.login-form')
-//     .addEventListener('submit', loginFormHandler);
+//     .querySelector(".login-in-btn")
+//     .addEventListener("submit", loginFormHandler);
+// }
 
 const alreadyRegisteredTakeBackToLogin = async (event) => {
   event.preventDefault();
