@@ -1,23 +1,24 @@
-// const loginFormHandler = async (event) => {
-//   event.preventDefault();
+const loginFormHandler = async (event) => {
+  event.preventDefault();
 
-//   const email = document.querySelector("#email").value.trim();
-//   const password = document.querySelector("#password").value.trim();
+  const email = document.querySelector("#email").value.trim();
+  const password = document.querySelector("#password").value.trim();
 
-//   if (email && password) {
-//     const response = await fetch("/api/users/login", {
-//       method: "POST",
-//       body: JSON.stringify({ email, password }),
-//       headers: { "Content-Type": "application/json" },
-//     });
+  if (email && password) {
+    const response = await fetch("/api/users/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
 
-//     if (response.ok) {
-//       document.location.replace("/");
-//     } else {
-//       alert("Failed to log in.");
-//     }
-//   }
-// };
+    if (response.ok) {
+      console.log("everything is A OK!");
+      document.location.replace("/");
+    } else {
+      alert("Failed to log in.");
+    }
+  }
+};
 
 const signupFormHandler = async (event) => {
   event.preventDefault();
@@ -45,11 +46,11 @@ const signupFormHandler = async (event) => {
   }
 };
 
-// if (document.querySelector(".login-in-btn") != null) {
-//   document
-//     .querySelector(".login-in-btn")
-//     .addEventListener("submit", loginFormHandler);
-// }
+if (document.querySelector(".login-btn") != null) {
+  document
+    .querySelector(".login-btn")
+    .addEventListener("click", loginFormHandler);
+}
 
 if (document.querySelector(".signup-submit") != null) {
   document
@@ -57,11 +58,6 @@ if (document.querySelector(".signup-submit") != null) {
     .addEventListener("click", signupFormHandler);
 }
 
-// if (document.querySelector(".alreadyRegistered") != null) {
-//   document
-//     .querySelector(".alreadyRegistered")
-//     .addEventListener("click", alreadyRegisteredTakeBackToLogin);
-// }
 // TODO: login page
 // WHEN: input email and Password
 // IF: does not exist in db prompt to use the sign up button or
