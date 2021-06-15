@@ -47,38 +47,43 @@ const signupFormHandler = async (event) => {
 
 const signupBtnClick = async (event) => {
   event.preventDefault();
-  window.location.assign("../html/signUp.html");
-};
 
-// if (document.querySelector(".login-in-btn") != null) {
-//   document
-//     .querySelector(".login-in-btn")
-//     .addEventListener("submit", loginFormHandler);
-// }
+  if (response.ok) {
+    document.location.replace("/");
 
-const alreadyRegisteredTakeBackToLogin = async (event) => {
-  event.preventDefault();
-  console.log("click click");
-  window.location.assign("../html/login.html");
-};
+    const response = await fetch("/api/signUp")
+    window.location.assign("../html/signUp.html");
+  };
 
-if (document.querySelector(".signup-form") != null) {
-  document
-    .querySelector(".signup-form")
-    .addEventListener("click", signupFormHandler);
-}
+  // if (document.querySelector(".login-in-btn") != null) {
+  //   document
+  //     .querySelector(".login-in-btn")
+  //     .addEventListener("submit", loginFormHandler);
+  // }
 
-if (document.querySelector(".sign-up-btn") != null) {
-  document
-    .querySelector(".sign-up-btn")
-    .addEventListener("click", signupBtnClick);
-}
+  // const alreadyRegisteredTakeBackToLogin = async (event) => {
+  //   event.preventDefault();
+  //   console.log("click click");
+  //   window.location.assign("../html/login.html");
+  // };
 
-if (document.querySelector(".alreadyRegistered") != null) {
-  document
-    .querySelector(".alreadyRegistered")
-    .addEventListener("click", alreadyRegisteredTakeBackToLogin);
-}
+  if (document.querySelector("#signup-form") != null) {
+    document
+      .querySelector(".signup-form")
+      .addEventListener("click", signupFormHandler);
+  }
+
+  if (document.querySelector(".sign-up-btn") != null) {
+    document
+      .querySelector(".sign-up-btn")
+      .addEventListener("click", signupBtnClick);
+  }
+
+  if (document.querySelector(".alreadyRegistered") != null) {
+    document
+      .querySelector(".alreadyRegistered")
+      .addEventListener("click", alreadyRegisteredTakeBackToLogin);
+  }
 // TODO: login page
 // WHEN: input email and Password
 // IF: does not exist in db prompt to use the sign up button or
@@ -90,6 +95,24 @@ if (document.querySelector(".alreadyRegistered") != null) {
 
 // WHEN: sign up button is pressed
 // THEN: redirect to singUp.html
+
+const signUpForm = document.querySelector("#signup-form");
+
+signUpForm.addEventListener("click", signUpPage);
+
+function signUpPage() {
+  document.location.replace("/signUp");
+
+  const response = await fetch("/api/signUp");
+  
+}
+
+// function signUpPage((res, req) => {
+//   document.location.replace("/signUp");
+
+//   const response = await fetch("/api/signUp");
+
+// )}
 
 // TODO: sign up page
 // WHEN: All feilds are filled in and SIGN UP is pressed
