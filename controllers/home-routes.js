@@ -1,12 +1,12 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-router.get('/signUp', (req, res) => {
-    // if (req.session.loggedIn) {
-    //     res.redirect('/homepage');
-    //     return;
-    // }
+router.get("/signUp", (req, res) => {
+  // if (req.session.loggedIn) {
+  //     res.redirect('/homepage');
+  //     return;
+  // }
 
-    res.render('signUp');
+  res.render("signUp");
 });
 
 // router.get('/', async (req, res) => {
@@ -34,14 +34,13 @@ router.get('/signUp', (req, res) => {
 //     }
 // });
 
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
 
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('login');
+  res.render("login");
 });
 
 // router.get('/login', (req, res) => {
