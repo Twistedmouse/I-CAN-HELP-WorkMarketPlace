@@ -51,12 +51,6 @@ const signupFormHandler = async (event) => {
 //     .addEventListener("submit", loginFormHandler);
 // }
 
-// const alreadyRegisteredTakeBackToLogin = async (event) => {
-//   event.preventDefault();
-//   console.log("click click");
-//   window.location.assign("../html/login.html");
-// };
-
 if (document.querySelector(".signup-form") != null) {
   document
     .querySelector(".signup-form")
@@ -86,15 +80,18 @@ if (signUpForm != null) {
   signUpForm.addEventListener("click", signUpPage);
 }
 
-async function signUpPage() {
-  console.log("click");
-  const response = await fetch("/signUp", {
-    method: "GET",
-  });
-  if (response.ok) {
-    document.location.replace("/signUp");
-  }
-  console.log(response);
+function signUpPage() {
+  document.location.replace("/signUp");
+}
+
+const takeBackToLogin = document.querySelector(".alreadyRegistered");
+
+if (takeBackToLogin != null) {
+  takeBackToLogin.addEventListener("click", alreadyRegisteredTakeBackToLogin);
+}
+
+function alreadyRegisteredTakeBackToLogin() {
+  document.location.replace("/login");
 }
 
 // TODO: sign up page
