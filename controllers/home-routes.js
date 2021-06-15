@@ -1,46 +1,27 @@
 const router = require("express").Router();
 
 router.get("/signUp", (req, res) => {
-  // if (req.session.loggedIn) {
-  //     res.redirect('/homepage');
-  //     return;
-  // }
+    // if (req.session.loggedIn) {
+    //     res.redirect('/homepage');
+    //     return;
+    // }
 
-  res.render("signUp");
+    res.render("signUp");
 });
 
-// router.get('/', async (req, res) => {
-//     try {
-//         const dbGalleryData = await Gallery.findAll({
-//             include: [
-//                 {
-//                     model: Painting,
-//                     attributes: ['filename', 'description'],
-//                 },
-//             ],
-//         });
+router.get('/', async (req, res) => {
 
-//         const galleries = dbGalleryData.map((gallery) =>
-//             gallery.get({ plain: true })
-//         );
+    res.render('homepage');
 
-//         res.render('homepage', {
-//             galleries,
-//             loggedIn: req.session.loggedIn,
-//         });
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json(err);
-//     }
-// });
+});
 
 router.get("/login", (req, res) => {
-  //   if (req.session.loggedIn) {
-  //     res.redirect("/");
-  //     return;
-  //   }
+    //   if (req.session.loggedIn) {
+    //     res.redirect("/");
+    //     return;
+    //   }
 
-  res.render("login");
+    res.render("login");
 });
 
 // router.get('/login', (req, res) => {
