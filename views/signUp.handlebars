@@ -1,0 +1,46 @@
+<div class="bg-gray-900 grid min-h-screen place-items-center">
+    <div class="w-min rounded-md p-12 bg-gray-300 sm:w-8/12 md:w-1/2 lg:w-5/12">
+        <h1 class="text-xl uppercase font-semibold">please fill in your information to continue</h1>
+        <form class="mt-6">
+            <div class="flex justify-between gap-3">
+                <span class="w-1/2">
+                    <label for="firstname"
+                        class="block uppercase text-s font-bold text-gray-600 uppercase">Firstname</label>
+                    <input id="firstname" type="text" name="firstname" placeholder="John" autocomplete="given-name"
+                        class="block w-full p-3 mt-2 text-gray-700 bg-white rounded appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                        required />
+                </span>
+                <span class="w-1/2">
+                    <label for="lastname"
+                        class="block uppercase text-s font-bold text-gray-600 uppercase">Lastname</label>
+                    <input id="lastname" type="text" name="lastname" placeholder="Doe" autocomplete="family-name"
+                        class="block w-full p-3 mt-2 text-gray-700 bg-white rounded appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                        required />
+                </span>
+            </div>
+            <label for="email" class="block uppercase mt-2 text-s font-bold text-gray-600 uppercase">E-mail</label>
+            <input id="email" type="email" name="email" placeholder="john.doe@company.com" autocomplete="email"
+                class="block w-full p-3 mt-2 text-gray-700 bg-white rounded appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                required />
+            <label for="password" class="block uppercase mt-2 text-s font-bold text-gray-600 uppercase">Password</label>
+            <input id="password" type="password" name="password" placeholder="********" autocomplete="new-password"
+                class="block w-full p-3 mt-2 text-gray-700 bg-white rounded appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                required />
+            <label for="password-confirm" class="block uppercase mt-2 text-s font-bold text-gray-600 uppercase">Confirm
+                password</label>
+            <input id="password-confirm" type="password" name="password-confirm" placeholder="********"
+                autocomplete="new-password"
+                class="block w-full p-3 mt-2 text-gray-700 bg-white rounded appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
+                required />
+            <button
+                class="signup-form bg-green-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mt-5 w-full"
+                type="button" style="transition: all 0.15s ease 0s;">
+                Sign up
+            </button>
+            <p
+                class="alreadyRegistered flex justify-between inline-block mt-4 text-s text-gray-500 cursor-pointer hover:text-black">
+                Already
+                registered?</p>
+        </form>
+    </div>
+</div>
