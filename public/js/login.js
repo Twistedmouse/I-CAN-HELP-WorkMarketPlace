@@ -3,11 +3,12 @@ const loginFormHandler = async (event) => {
 
   const email = document.querySelector("#email").value.trim();
   const password = document.querySelector("#password").value.trim();
-
+  const rememberMe = document.querySelector("#checkLogin").value;
+  // double check how to get value from a checkbox then send info to the backend
   if (email && password) {
     const response = await fetch("/api/users/login", {
       method: "POST",
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, rememberMe }),
       headers: { "Content-Type": "application/json" },
     });
 
@@ -27,12 +28,20 @@ const signupFormHandler = async (event) => {
   const lastname = document.querySelector("#lastname").value.trim();
   const email = document.querySelector("#email").value.trim();
   const password = document.querySelector("#password").value.trim();
+  const rememberMe = document.querySelector("#checkLogin").value;
+  // double check how to get value from a checkbox then send info to the backend
   console.log(firstname, lastname, email, password);
 
   if (firstname && lastname && email && password) {
     const response = await fetch("/api/users", {
       method: "POST",
-      body: JSON.stringify({ firstname, lastname, email, password }),
+      body: JSON.stringify({
+        firstname,
+        lastname,
+        email,
+        password,
+        rememberMe,
+      }),
       headers: { "Content-Type": "application/json" },
     });
 

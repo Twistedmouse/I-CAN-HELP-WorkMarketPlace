@@ -13,6 +13,11 @@ router.post("/", async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.user_id = dbUserData.id;
+      req.session.user_email = dbUserData.email;
+      if (req.body.rememberMe) {
+        req.session.cookie.maxAge = 48 * 60 * 60 * 1000;
+      }
 
       res.status(200).json(dbUserData);
     });
@@ -49,7 +54,11 @@ router.post("/login", async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      req.session.user_id = dbUserData.id;
+      req.session.user_email = dbUserData.email;
+      if (req.body.rememberMe) {
+        req.session.cookie.maxAge = 48 * 60 * 60 * 1000;
+      }
       res
         .status(200)
         .json({ user: dbUserData, message: "You are now logged in!" });
