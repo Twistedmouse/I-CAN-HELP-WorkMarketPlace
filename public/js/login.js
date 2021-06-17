@@ -27,21 +27,26 @@ const signupFormHandler = async (event) => {
   const lastname = document.querySelector("#lastname").value.trim();
   const email = document.querySelector("#email").value.trim();
   const password = document.querySelector("#password").value.trim();
-  console.log(firstname, lastname, email, password);
+  const passwordConfirm = document.querySelector("#password-confirm").value.trim();
 
-  if (firstname && lastname && email && password) {
-    const response = await fetch("/api/users", {
-      method: "POST",
-      body: JSON.stringify({ firstname, lastname, email, password }),
-      headers: { "Content-Type": "application/json" },
-    });
+  if (password != passwordConfirm) {
+    alert("Your Password didn't match");
+  }
+  else {
+    if (firstname && lastname && email && password) {
+      const response = await fetch("/api/users", {
+        method: "POST",
+        body: JSON.stringify({ firstname, lastname, email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
 
-    if (response.ok) {
-      console.log("User SignUp complete.");
-      document.location.replace("/login");
-    } else {
-      console.log(response.status);
-      alert("Failed to sign up.");
+      if (response.ok) {
+        console.log("User SignUp complete.");
+        document.location.replace("/login");
+      } else {
+        console.log(response.status);
+        alert("Failed to sign up.");
+      }
     }
   }
 };
