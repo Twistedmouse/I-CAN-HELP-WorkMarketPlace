@@ -21,6 +21,11 @@ const loginFormHandler = async (event) => {
   }
 };
 
+//rememberMe btn
+if (rememberMe === true) {
+  session.user_email = email.value;
+}
+
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
