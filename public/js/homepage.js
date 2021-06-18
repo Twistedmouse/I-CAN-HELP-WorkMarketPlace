@@ -6,7 +6,7 @@ const postJobFunction = async (event) => {
   const price = document.querySelector(".job-price").value.trim();
   const location = document.querySelector(".job-location").value.trim();
 
-  const userid = 10;
+  const userid = 1;
   if (jobname && jobDescr && price && location) {
     const response = await fetch("/api/jobs", {
       method: "POST",

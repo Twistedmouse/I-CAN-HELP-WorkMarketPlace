@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+const { Job, User } = require("../models");
+
 router.get("/signUp", (req, res) => {
     // if (req.session.loggedIn) {
     //     res.redirect('/homepage');
@@ -9,11 +11,34 @@ router.get("/signUp", (req, res) => {
     res.render("signUp");
 });
 
+//GET all jobs for homepage
 router.get('/', async (req, res) => {
+    try {
+        const allJobs = await Job.findAll({
+            include: [{
+                model: User,
+                attributes: ['first_name', 'last_name', 'email'],
+            }],
 
-    res.render('homepage');
+        });
+
+        const jobs = allJobs.map((job) =>
+            job.get({ plain: true })
+        );
+
+        res.render('homepage', { jobs });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
 
 });
+
+// router.get('/', async (req, res) => {
+
+//     res.render('homepage');
+
+// });
 
 router.get("/login", (req, res) => {
     //   if (req.session.loggedIn) {

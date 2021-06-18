@@ -1,30 +1,7 @@
 const router = require("express").Router();
 
-const { Job, User } = require("../../models");
+const { Job } = require("../../models");
 
-
-//GET job localhost:3001/api/jobs
-router.get('/', async (req, res) => {
-    try {
-        const allJobs = await Job.findAll({
-            include: [{
-                model: User,
-                attributes: ['first_name', 'last_name', 'email'],
-            }],
-
-        });
-
-        const postJobs = allJobs.map((job) =>
-            job.get({ plain: true })
-        );
-
-        res.render('homepage', { postJobs });
-    } catch (error) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-
-});
 
 
 //Create new job 
