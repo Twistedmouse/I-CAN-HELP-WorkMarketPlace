@@ -23,13 +23,4 @@ router.post('/', async (req, res) => {
 });
 
 
-
-//job post 
-router.get('/post', async (req, res) => {
-
-    res.render('postjob');
-
-});
-
-
 module.exports = router;
