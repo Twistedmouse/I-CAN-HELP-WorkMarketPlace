@@ -6,23 +6,28 @@ const postJobFunction = async (event) => {
   const price = document.querySelector(".job-price").value.trim();
   const location = document.querySelector(".job-location").value.trim();
 
-  const userid = 1;
-  if (jobname && jobDescr && price && location) {
-    const response = await fetch("/api/jobs", {
-      method: "POST",
-      body: JSON.stringify({ jobname, price, jobDescr, location, userid }),
-      headers: { "Content-Type": "application/json" },
-    });
+  if (isNaN(price)) {
+    alert("Please enter number in Price field.")
+  }
+  else {
+    const userid = 1;
+    if (jobname && jobDescr && price && location) {
+      const response = await fetch("/api/jobs", {
+        method: "POST",
+        body: JSON.stringify({ jobname, price, jobDescr, location, userid }),
+        headers: { "Content-Type": "application/json" },
+      });
 
-    if (response.ok) {
-      alert("Job posted successfully!!");
-      document.location.replace("/");
-    } else {
-      alert("Failed to sign up.");
+      if (response.ok) {
+        alert("Job posted successfully!!");
+        document.location.replace("/");
+      } else {
+        alert("Failed to sign up.");
+      }
     }
   }
-};
 
+};
 document
   .querySelector(".postjob-btn")
   .addEventListener("click", postJobFunction);
