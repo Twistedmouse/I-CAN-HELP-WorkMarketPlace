@@ -7,9 +7,8 @@ const postJobFunction = async (event) => {
   const location = document.querySelector(".job-location").value.trim();
 
   if (isNaN(price)) {
-    alert("Please enter number in Price field.")
-  }
-  else {
+    alert("Please enter number in Price field.");
+  } else {
     const userid = 1;
     if (jobname && jobDescr && price && location) {
       const response = await fetch("/api/jobs", {
@@ -26,7 +25,6 @@ const postJobFunction = async (event) => {
       }
     }
   }
-
 };
 document
   .querySelector(".postjob-btn")
