@@ -58,4 +58,13 @@ router.get("/login", (req, res) => {
 //     res.render('login');
 // });
 
+
+//Post new job
+router.get('/postjob', async (req, res) => {
+
+    res.render('postjob');
+
+});
+
+
 module.exports = router;
