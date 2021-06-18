@@ -8,6 +8,10 @@ const { Job, User } = require("../models");
 router.get('/', async (req, res) => {
     try {
         const allJobs = await Job.findAll({
+
+            order: [
+                ['date', 'DESC'],
+            ],
             include: [{
                 model: User,
                 attributes: ['first_name', 'last_name', 'email'],

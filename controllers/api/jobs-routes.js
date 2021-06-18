@@ -13,6 +13,8 @@ router.post('/', async (req, res) => {
             job_price: req.body.price,
             job_descr: req.body.jobDescr,
             job_location: req.body.location,
+            date: new Date(),
+            // user_id: req.session.userid,
             user_id: req.body.userid,
         });
         res.status(200).json(newJob);
