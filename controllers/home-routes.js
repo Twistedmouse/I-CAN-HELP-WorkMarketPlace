@@ -2,14 +2,7 @@ const router = require("express").Router();
 
 const { Job, User } = require("../models");
 
-router.get("/signUp", (req, res) => {
-    // if (req.session.loggedIn) {
-    //     res.redirect('/homepage');
-    //     return;
-    // }
 
-    res.render("signUp");
-});
 
 //GET all jobs for homepage
 router.get('/', async (req, res) => {
@@ -34,11 +27,32 @@ router.get('/', async (req, res) => {
 
 });
 
-// router.get('/', async (req, res) => {
+router.get('/job/:id', async (req, res) => {
+    // If the user is not logged in, redirect the user to the login page
+    // if (!req.session.loggedIn) {
+    //   res.redirect('/login');
+    // } else {
+    // If the user is logged in, allow them 
 
-//     res.render('homepage');
+    try {
+        const allJobs = await Job.findByPk(req.params.id, {
+            include: [{
+                model: User,
+                attributes: ['first_name', 'last_name', 'email'],
+            }],
 
-// });
+        });
+
+        const job = allJobs.get({ plain: true });
+
+        console.log(job)
+        res.render('job', { job });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+});
+
 
 router.get("/login", (req, res) => {
     //   if (req.session.loggedIn) {
@@ -49,14 +63,14 @@ router.get("/login", (req, res) => {
     res.render("login");
 });
 
-// router.get('/login', (req, res) => {
-//     if (req.session.loggedIn) {
-//         res.redirect('/');
-//         return;
-//     }
+router.get("/signUp", (req, res) => {
+    // if (req.session.loggedIn) {
+    //     res.redirect('/homepage');
+    //     return;
+    // }
 
-//     res.render('login');
-// });
+    res.render("signUp");
+});
 
 
 //Post new job
