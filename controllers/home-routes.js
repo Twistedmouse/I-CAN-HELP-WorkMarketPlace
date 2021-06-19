@@ -120,7 +120,6 @@ async function main() {
 
 //Sends Email notification to user
 router.get('/test', (req, res) => {
-    console.log('RECEIVED REQUEST FROM FRONT END  FIRING FUNCTION TO SEND EMAIL ')
     main().catch(console.error)
     res.end();
 })
