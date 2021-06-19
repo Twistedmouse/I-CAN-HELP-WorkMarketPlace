@@ -14,8 +14,8 @@ router.post('/', async (req, res) => {
             job_descr: req.body.jobDescr,
             job_location: req.body.location,
             date: new Date(),
-            // user_id: req.session.userid,
-            user_id: req.body.userid,
+            user_id: req.session.userid,
+            // user_id: req.body.userid,
         });
         res.status(200).json(newJob);
     } catch (error) {
@@ -23,6 +23,9 @@ router.post('/', async (req, res) => {
         res.status(500).json(error);
     }
 });
+
+
+
 
 
 module.exports = router;

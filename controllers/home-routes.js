@@ -49,7 +49,7 @@ router.get('/job/:id', async (req, res) => {
         });
 
         const job = allJobs.get({ plain: true });
-
+        console.log(job);
         res.render('job', { job });
     } catch (error) {
         console.log(error);
@@ -87,7 +87,7 @@ router.get('/postjob', async (req, res) => {
 
 //Email notification 
 //Using google
-async function main() {
+async function main(emailTo) {
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -103,9 +103,9 @@ async function main() {
 
     const mailOptions = {
         from: "lochan.sharad@gmail.com",
-        to: "kshetrisarad@gmail.com",
+        to: emailTo,
         subject: 'Job Accepted',
-        text: 'Hi /n Your Job has been accepted.'
+        text: 'Hi Your Job has been accepted.'
     };
 
     transporter.sendMail(mailOptions, function (err, data) {
@@ -118,9 +118,15 @@ async function main() {
 }
 
 //Sends Email notification to user
-router.get('/sendEmail', (req, res) => {
-    main().catch(console.error);
-    res.render('postjob');
+router.post('/sendEmail', (req, res) => {
+    try {
+        main(req.body.userEmail);
+        res.status(200).json(req.body.userEmail);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+
 
 })
 

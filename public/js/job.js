@@ -1,8 +1,21 @@
+const userEmail = document.querySelector(".useremail").innerHTML.trim();
 
 const sendEmail = async (event) => {
     event.preventDefault();
-    alert("Send mail now");
-    document.location.replace("/sendEmail");
+
+    const response = await fetch("/sendEmail", {
+        method: "POST",
+        body: JSON.stringify({ userEmail }),
+        headers: { "Content-Type": "application/json" },
+    });
+    console.log(response);
+    if (response.ok) {
+        alert("Job Accepted and Job giver Notified.");
+        document.location.replace("/");
+    } else {
+        alert("Failed to accept job.");
+    }
+    // document.location.replace("/sendEmail");
 
 };
 
