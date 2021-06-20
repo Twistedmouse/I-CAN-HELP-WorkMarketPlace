@@ -101,7 +101,7 @@ async function main(emailTo, userdetail) {
     from: "",
     to: emailTo,
     subject: "Job Accepted",
-    text: `Hi Your Job has been accepted by: ${userdetail.first_name} ${userdetail.email}`,
+    text: `Hi Your Job has been accepted. by: ${userdetail.first_name} ${userdetail.email}`,
   };
 
   transporter.sendMail(mailOptions, function (err, data) {
