@@ -2,7 +2,7 @@ const jobId = document.querySelector(".jobId").innerHTML.trim();
 
 const deleteJobs = async (event) => {
     event.preventDefault();
-    alert("Are you sure you want to delete this job?");
+    alert("Your job is being deleted...");
     const response = await fetch("/yourjobs", {
         method: "POST",
         body: JSON.stringify({ jobId }),
@@ -10,7 +10,7 @@ const deleteJobs = async (event) => {
     });
 
     if (response.ok) {
-        alert("Job Deleted");
+        alert("Job deleted!");
         document.location.replace("/yourjobs");
     } else {
         alert("Failed to delete job.");
