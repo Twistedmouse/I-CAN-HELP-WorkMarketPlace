@@ -110,7 +110,7 @@ router.get("/yourjobs", async (req, res) => {
 
 //Email notification
 //Using google
-async function main(emailTo, userdetail) {
+async function emailNotification(jobName, emailTo, userdetail) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -127,7 +127,7 @@ async function main(emailTo, userdetail) {
     from: "",
     to: emailTo,
     subject: "Job Accepted",
-    text: `Hi Your Job has been accepted. by: ${userdetail.first_name} ${userdetail.email}`,
+    text: `Hi Your ${jobName}, has been accepted. by: ${userdetail.first_name} ${userdetail.email}`,
   };
 
   transporter.sendMail(mailOptions, function (err, data) {
@@ -146,7 +146,7 @@ router.post("/sendEmail", async (req, res) => {
   const userdetail = userdetails.get({ plain: true });
   console.log("userdetail:", userdetail);
   try {
-    main(req.body.userEmail, userdetail);
+    emailNotification(req.body.jobTitle, req.body.userEmail, userdetail);
     res.status(200).json(req.body.userEmail);
   } catch (error) {
     console.log(error);
