@@ -83,28 +83,72 @@ router.get("/postjob", async (req, res) => {
 });
 
 //Get users posted job
-router.get("/yourjobs", async (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect("/login");
-  } else {
-    try {
-      const allYourJobs = await Job.findAll({
-        where: { user_id: req.session.userid },
-        order: [["date", "DESC"]],
-        include: [
-          {
-            model: User,
-            attributes: ["first_name", "last_name", "email"],
-          },
-        ],
-      });
-      const yourJobs = allYourJobs.map((job) => job.get({ plain: true }));
+// router.get("/yourjobs", async (req, res) => {
+//   if (!req.session.loggedIn) {
+//     res.redirect("/login");
+//   } else {
+//     try {
+//       const allYourJobs = await Job.findAll({
+//         where: { user_id: req.session.userid },
+//         order: [["date", "DESC"]],
+//         include: [
+//           {
+//             model: User,
+//             attributes: ["first_name", "last_name", "email"],
+//           },
+//         ],
+//       });
+//       const yourJobs = allYourJobs.map((job) => job.get({ plain: true }));
 
-      res.render("yourjob", { yourJobs });
-    } catch (error) {
+//       res.render("yourjob", { yourJobs });
+//     } catch (error) {
+//       console.log(error);
+//       res.status(500).json(error);
+//     }
+//   }
+// });
+
+router.get('/yourjobs', async (req, res) => {
+  if (!req.session.loggedIn) {
+      res.redirect('/login');
+  } else {
+      try {
+          const allYourJobs = await Job.findAll({
+              where: { user_id: req.session.userid },
+              order: [
+                  ['date', 'DESC'],
+              ],
+              include: [{
+                  model: User,
+                  attributes: ['first_name', 'last_name', 'email'],
+              }],
+
+          });
+          const yourJobs = allYourJobs.map((job) =>
+              job.get({ plain: true })
+          );
+
+          res.render('yourjob', { yourJobs });
+
+      } catch (error) {
+          console.log(error);
+          res.status(500).json(error);
+      }
+  }
+});
+
+
+router.post('/yourjobs', async (req, res) => {
+  try {
+      await Job.destroy({
+          where: {
+              id: req.body.jobId,
+          }
+      });
+      res.status(200).json(req.body.jobId);
+  } catch (error) {
       console.log(error);
       res.status(500).json(error);
-    }
   }
 });
 
