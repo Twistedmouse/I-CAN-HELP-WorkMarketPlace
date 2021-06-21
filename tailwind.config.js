@@ -1,15 +1,11 @@
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      animation: {
-        //  tristan look at if have time if i dont use delete tailwind.config.js
-      },
+    screens: {
+      sm: "640px",
+
+      md: "768px",
+
+      lg: "1024px",
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
 };
