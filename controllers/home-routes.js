@@ -82,9 +82,79 @@ router.get("/postjob", async (req, res) => {
   }
 });
 
+//Get users posted job
+// router.get("/yourjobs", async (req, res) => {
+//   if (!req.session.loggedIn) {
+//     res.redirect("/login");
+//   } else {
+//     try {
+//       const allYourJobs = await Job.findAll({
+//         where: { user_id: req.session.userid },
+//         order: [["date", "DESC"]],
+//         include: [
+//           {
+//             model: User,
+//             attributes: ["first_name", "last_name", "email"],
+//           },
+//         ],
+//       });
+//       const yourJobs = allYourJobs.map((job) => job.get({ plain: true }));
+
+//       res.render("yourjob", { yourJobs });
+//     } catch (error) {
+//       console.log(error);
+//       res.status(500).json(error);
+//     }
+//   }
+// });
+
+router.get('/yourjobs', async (req, res) => {
+  if (!req.session.loggedIn) {
+      res.redirect('/login');
+  } else {
+      try {
+          const allYourJobs = await Job.findAll({
+              where: { user_id: req.session.userid },
+              order: [
+                  ['date', 'DESC'],
+              ],
+              include: [{
+                  model: User,
+                  attributes: ['first_name', 'last_name', 'email'],
+              }],
+
+          });
+          const yourJobs = allYourJobs.map((job) =>
+              job.get({ plain: true })
+          );
+
+          res.render('yourjob', { yourJobs });
+
+      } catch (error) {
+          console.log(error);
+          res.status(500).json(error);
+      }
+  }
+});
+
+
+router.post('/yourjobs', async (req, res) => {
+  try {
+      await Job.destroy({
+          where: {
+              id: req.body.jobId,
+          }
+      });
+      res.status(200).json(req.body.jobId);
+  } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+  }
+});
+
 //Email notification
 //Using google
-async function main(emailTo, userdetail) {
+async function emailNotification(jobName, emailTo, userdetail) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -101,7 +171,7 @@ async function main(emailTo, userdetail) {
     from: "",
     to: emailTo,
     subject: "Job Accepted",
-    text: `Hi Your Job has been accepted. by: ${userdetail.first_name} ${userdetail.email}`,
+    text: `Hi Your ${jobName}, has been accepted. by: ${userdetail.first_name} ${userdetail.email}`,
   };
 
   transporter.sendMail(mailOptions, function (err, data) {
@@ -120,7 +190,7 @@ router.post("/sendEmail", async (req, res) => {
   const userdetail = userdetails.get({ plain: true });
   console.log("userdetail:", userdetail);
   try {
-    main(req.body.userEmail, userdetail);
+    emailNotification(req.body.jobTitle, req.body.userEmail, userdetail);
     res.status(200).json(req.body.userEmail);
   } catch (error) {
     console.log(error);
