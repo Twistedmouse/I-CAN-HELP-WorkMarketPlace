@@ -1,12 +1,12 @@
 # I Can Help! Work Marketplace
 
-## This GitHub repository contains the code and database schema for 
+## This GitHub repository contains the code and database schema for "I Can Help!", a community platform that connects people who need to outsource tasks and find local services, with people who are looking to earn money and ready to work.
 
 ---
 
 ### This application provides a web based marketplace for listing jobs or tasks using a clean, simple and easy to use interface. The focus of the website was not to provide ongoing employment opportunities but rather to address a specific identified gap in the market around completion of one time tasks or odd jobs. Users on the site are able to add listings requesting assistance, or are able to respond to these listings, agreeing to complete the task for the user who has posted the job.
 
-I Can Help! was developed to provide a platform on which to request assistance for people who are time poor, or unable to complete a job due to a lack of expertise; or for those who would simply rather pay somebpdy else to do it! With the COVID-19 pandemic affecting employment, particularly for younger people, this also serves to provide small employment opportunities to enable people to make additional income.
+I Can Help! was developed to provide a platform on which to request assistance for people who are time poor, or unable to complete a job due to a lack of expertise; or for those who would simply rather pay somebody else to do it! With the COVID-19 pandemic affecting employment, particularly for younger people, this also serves to provide small employment opportunities to enable people to make additional income.
 
 Contact details are exchanged for both the poster and the tasker and the poster is notified by email that their job has been accepted.
 
@@ -201,4 +201,3 @@ Finally, implementing a payment platform would provide for new opportunities to 
 <a href="https://drive.google.com/file/d/1LBS-JzbnrEnB2cnLxHnSzkDsZb10dtEF/view?usp=sharing">Click here to watch the video!</a>
 
 ---
-
